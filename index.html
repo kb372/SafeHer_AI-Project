@@ -1,0 +1,958 @@
+<html>
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeHer AI</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>🛡️ SafeHer AI</h1>
+    <p>Your Smart Women's Safety Companion</p>
+</header> </div>
+<nav>
+    <a href="#home">🏠 Home</a>
+    <a href="#features">⭐ Features</a>
+    <a href="#chatbot">🤖 Chatbot</a>
+    <a href="#contact">📞 Contact Us</a>
+</nav> <section id="home" class="card">
+
+</header>
+
+<!-- WELCOME SECTION -->
+<section class="card">
+    <h2>🌸 Welcome</h2>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Your Name"
+    >
+
+    <button onclick="welcomeUser()">
+        Continue
+    </button>
+
+    <h3 id="welcomeText"></h3>
+</section>
+
+<!-- DASHBOARD -->
+<section class="dashboard">
+
+    <div class="dashboard-card">
+        <h3>Safety Score</h3>
+        <h1 id="scoreDisplay">0%</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Emotion</h3>
+        <h1 id="emotionDisplay">😊</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Status</h3>
+        <h1>Active</h1>
+    </div>
+
+</section>
+
+<!-- PLACE ANALYZER -->
+<section class="card">
+
+    <h2>📸 Place Safety Analyzer</h2>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+    >
+
+    <button onclick="analyzeImage()">
+        Analyze Image
+    </button>
+
+    <div class="meter">
+        <div id="progressBar"></div>
+    </div>
+
+    <div id="report"></div>
+
+</section>
+
+<!-- EMOTION PREDICTOR -->
+<section class="card">
+
+    <h2>😊 Emotion Predictor</h2>
+
+    <textarea
+        id="emotionText"
+        placeholder="How are you feeling today?"
+    ></textarea>
+
+    <button onclick="detectEmotion()">
+        Detect Emotion
+    </button>
+
+    <h3 id="emotionResult"></h3>
+
+</section>
+
+<!-- CHATBOT -->
+<section class="card">
+
+    <h2>🤖 Advanced SafeHer Chatbot</h2>
+
+    <div id="chatbox"></div>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="Ask a safety question..."
+    >
+
+    <button onclick="sendMessage()">
+        Send
+    </button>
+
+</section>
+
+<!-- SOS -->
+<section class="card sos-section">
+
+    <h2>🚨 Emergency SOS</h2>
+
+    <button
+        class="sos-btn"
+        onclick="sendSOS()"
+    >
+        SOS
+    </button>
+
+    <p>
+        Click in case of emergency
+    </p>
+
+</section>
+
+<!-- SAFETY TIPS -->
+<section class="card">
+
+    <h2>🛡 Safety Tips</h2>
+
+    <ul>
+        <li>Share live location with trusted contacts.</li>
+        <li>Stay in well-lit areas at night.</li>
+        <li>Keep emergency numbers saved.</li>
+        <li>Use verified transport services.</li>
+        <li>Stay aware of your surroundings.</li>
+    </ul>
+
+</section>
+
+<!-- DEFENSE TIPS -->
+<section class="card">
+
+    <h2>🥋 Self Defense Tips</h2>
+
+    <ul>
+        <li>Stay calm during emergencies.</li>
+        <li>Use your voice to attract attention.</li>
+        <li>Learn basic self-defense moves.</li>
+        <li>Carry a whistle or personal alarm.</li>
+        <li>Move toward crowded places if threatened.</li>
+    </ul>
+
+</section>
+
+<!-- WOMEN EMPOWERMENT -->
+<section class="card">
+
+    <h2>👩 Women Empowerment</h2>
+
+    <p>
+        "Strong women don't wait for opportunities,
+        they create them."
+    </p>
+
+    <br>
+
+    <p>
+        Education, awareness, confidence and courage
+        are the strongest tools for safety.
+    </p>
+
+</section>
+
+<!-- GALLERY -->
+<section class="card">
+
+    <h2>📸 Empowerment Gallery</h2>
+
+    <div class="gallery">
+
+        <img
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400"
+        alt="Women">
+
+    </div>
+
+</section><!-- CONTACT US -->
+
+<section id="contact" class="card">
+
+    <h2>📞 Contact Us</h2>
+
+    <p>
+        Have questions or need assistance?
+        Reach out to SafeHer AI.
+    </p>
+
+    <br>
+
+    <div class="contact-box">
+
+        <p>📧 Email: safeherai@gmail.com</p>
+
+        <p>📱 Phone: +91 98765 43210</p>
+
+        <p>🌐 Website: www.safeherai.com</p>
+
+        <p>📍 Location: New Delhi, India</p>
+
+    </div>
+
+</section>
+
+<!-- EMERGENCY HELPLINES -->
+
+<section class="card emergency-section">
+
+    <h2>🚨 Emergency Helplines</h2>
+
+    <div class="helpline-grid">
+
+        <div class="helpline-card">
+            <h3>👮 Police</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚑 Ambulance</h3>
+            <p>108</p>
+            <a href="tel:108">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>👩 Women Helpline</h3>
+            <p>1091</p>
+            <a href="tel:1091">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🧒 Child Helpline</h3>
+            <p>1098</p>
+            <a href="tel:1098">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🔥 Fire Brigade</h3>
+            <p>101</p>
+            <a href="tel:101">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚨 National Emergency</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+    </div><div class="emergency-warning">
+
+    ⚠ In case of immediate danger, press the SOS button
+    and contact emergency services immediately.
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    SafeHer AI © 2026 | Class 12 Capstone Project
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html><html>
+<html lang="en">
+<head><i class="fa-solid fa-phone"></i>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeHer AI</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>🛡️ SafeHer AI</h1>
+    <p>Your Smart Women's Safety Companion</p>
+</header> </div>
+<nav>
+    <a href="#home">🏠 Home</a>
+    <a href="#features">⭐ Features</a>
+    <a href="#chatbot">🤖 Chatbot</a>
+    <a href="#contact">📞 Contact Us</a>
+</nav> <section id="home" class="card">
+
+</header>
+
+<!-- WELCOME SECTION -->
+<section class="card">
+    <h2>🌸 Welcome</h2>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Your Name"
+    >
+
+    <button onclick="welcomeUser()">
+        Continue
+    </button>
+
+    <h3 id="welcomeText"></h3>
+</section>
+
+<!-- DASHBOARD -->
+<section class="dashboard">
+
+    <div class="dashboard-card">
+        <h3>Safety Score</h3>
+        <h1 id="scoreDisplay">0%</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Emotion</h3>
+        <h1 id="emotionDisplay">😊</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Status</h3>
+        <h1>Active</h1>
+    </div>
+
+</section>
+
+<!-- PLACE ANALYZER -->
+<section class="card">
+
+    <h2>📸 Place Safety Analyzer</h2>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+    >
+
+    <button onclick="analyzeImage()">
+        Analyze Image
+    </button>
+
+    <div class="meter">
+        <div id="progressBar"></div>
+    </div>
+
+    <div id="report"></div>
+
+</section>
+
+<!-- EMOTION PREDICTOR -->
+<section class="card">
+
+    <h2>😊 Emotion Predictor</h2>
+
+    <textarea
+        id="emotionText"
+        placeholder="How are you feeling today?"
+    ></textarea>
+
+    <button onclick="detectEmotion()">
+        Detect Emotion
+    </button>
+
+    <h3 id="emotionResult"></h3>
+
+</section>
+
+<!-- CHATBOT -->
+<section class="card">
+
+    <h2>🤖 Advanced SafeHer Chatbot</h2>
+
+    <div id="chatbox"></div>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="Ask a safety question..."
+    >
+
+    <button onclick="sendMessage()">
+        Send
+    </button>
+
+</section>
+
+<!-- SOS -->
+<section class="card sos-section">
+
+    <h2>🚨 Emergency SOS</h2>
+
+    <button
+        class="sos-btn"
+        onclick="sendSOS()"
+    >
+        SOS
+    </button>
+
+    <p>
+        Click in case of emergency
+    </p>
+
+</section>
+
+<!-- SAFETY TIPS -->
+<section class="card">
+
+    <h2>🛡 Safety Tips</h2>
+
+    <ul>
+        <li>Share live location with trusted contacts.</li>
+        <li>Stay in well-lit areas at night.</li>
+        <li>Keep emergency numbers saved.</li>
+        <li>Use verified transport services.</li>
+        <li>Stay aware of your surroundings.</li>
+    </ul>
+
+</section>
+
+<!-- DEFENSE TIPS -->
+<section class="card">
+
+    <h2>🥋 Self Defense Tips</h2>
+
+    <ul>
+        <li>Stay calm during emergencies.</li>
+        <li>Use your voice to attract attention.</li>
+        <li>Learn basic self-defense moves.</li>
+        <li>Carry a whistle or personal alarm.</li>
+        <li>Move toward crowded places if threatened.</li>
+    </ul>
+
+</section>
+
+<!-- WOMEN EMPOWERMENT -->
+<section class="card">
+
+    <h2>👩 Women Empowerment</h2>
+
+    <p>
+        "Strong women don't wait for opportunities,
+        they create them."
+    </p>
+
+    <br>
+
+    <p>
+        Education, awareness, confidence and courage
+        are the strongest tools for safety.
+    </p>
+
+</section>
+
+<!-- GALLERY -->
+<section class="card">
+
+    <h2>📸 Empowerment Gallery</h2>
+
+    <div class="gallery">
+
+        <img
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400"
+        alt="Women">
+
+    </div>
+
+</section><!-- CONTACT US -->
+
+<section id="contact" class="card">
+
+    <h2>📞 Contact Us</h2>
+
+    <p>
+        Have questions or need assistance?
+        Reach out to SafeHer AI.
+    </p>
+
+    <br>
+
+    <div class="contact-box">
+
+        <p>📧 Email: safeherai@gmail.com</p>
+
+        <p>📱 Phone: +91 98765 43210</p>
+
+        <p>🌐 Website: www.safeherai.com</p>
+
+        <p>📍 Location: New Delhi, India</p>
+
+    </div>
+
+</section>
+
+<!-- EMERGENCY HELPLINES -->
+
+<section class="card emergency-section">
+
+    <h2>🚨 Emergency Helplines</h2>
+
+    <div class="helpline-grid">
+
+        <div class="helpline-card">
+            <h3>👮 Police</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚑 Ambulance</h3>
+            <p>108</p>
+            <a href="tel:108">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>👩 Women Helpline</h3>
+            <p>1091</p>
+            <a href="tel:1091">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🧒 Child Helpline</h3>
+            <p>1098</p>
+            <a href="tel:1098">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🔥 Fire Brigade</h3>
+            <p>101</p>
+            <a href="tel:101">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚨 National Emergency</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+    </div><div class="emergency-warning">
+
+    ⚠ In case of immediate danger, press the SOS button
+    and contact emergency services immediately.
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    SafeHer AI © 2026 | Class 12 Capstone Project
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html><html>
+<html lang="en">
+<head><i class="fa-solid fa-phone"></i>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeHer AI</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>🛡️ SafeHer AI</h1>
+    <p>Your Smart Women's Safety Companion</p>
+</header> </div>
+<nav>
+    <a href="#home">🏠 Home</a>
+    <a href="#features">⭐ Features</a>
+    <a href="#chatbot">🤖 Chatbot</a>
+    <a href="#contact">📞 Contact Us</a>
+</nav> <section id="home" class="card">
+
+</header>
+
+<!-- WELCOME SECTION -->
+<section class="card">
+    <h2>🌸 Welcome</h2>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Enter Your Name"
+    >
+
+    <button onclick="welcomeUser()">
+        Continue
+    </button>
+
+    <h3 id="welcomeText"></h3>
+</section>
+
+<!-- DASHBOARD -->
+<section class="dashboard">
+
+    <div class="dashboard-card">
+        <h3>Safety Score</h3>
+        <h1 id="scoreDisplay">0%</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Emotion</h3>
+        <h1 id="emotionDisplay">😊</h1>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Status</h3>
+        <h1>Active</h1>
+    </div>
+
+</section>
+
+<!-- PLACE ANALYZER -->
+<section class="card">
+
+    <h2>📸 Place Safety Analyzer</h2>
+
+    <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+    >
+
+    <button onclick="analyzeImage()">
+        Analyze Image
+    </button>
+
+    <div class="meter">
+        <div id="progressBar"></div>
+    </div>
+
+    <div id="report"></div>
+
+</section>
+
+<!-- EMOTION PREDICTOR -->
+<section class="card">
+
+    <h2>😊 Emotion Predictor</h2>
+
+    <textarea
+        id="emotionText"
+        placeholder="How are you feeling today?"
+    ></textarea>
+
+    <button onclick="detectEmotion()">
+        Detect Emotion
+    </button>
+
+    <h3 id="emotionResult"></h3>
+
+</section>
+
+<!-- CHATBOT -->
+<section class="card">
+
+    <h2>🤖 Advanced SafeHer Chatbot</h2>
+
+    <div id="chatbox"></div>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="Ask a safety question..."
+    >
+
+    <button onclick="sendMessage()">
+        Send
+    </button>
+
+</section>
+
+<!-- SOS -->
+<section class="card sos-section">
+
+    <h2>🚨 Emergency SOS</h2>
+
+    <button
+        class="sos-btn"
+        onclick="sendSOS()"
+    >
+        SOS
+    </button>
+
+    <p>
+        Click in case of emergency
+    </p>
+
+</section>
+
+<!-- SAFETY TIPS -->
+<section class="card">
+
+    <h2>🛡 Safety Tips</h2>
+
+    <ul>
+        <li>Share live location with trusted contacts.</li>
+        <li>Stay in well-lit areas at night.</li>
+        <li>Keep emergency numbers saved.</li>
+        <li>Use verified transport services.</li>
+        <li>Stay aware of your surroundings.</li>
+    </ul>
+
+</section>
+
+<!-- DEFENSE TIPS -->
+<section class="card">
+
+    <h2>🥋 Self Defense Tips</h2>
+
+    <ul>
+        <li>Stay calm during emergencies.</li>
+        <li>Use your voice to attract attention.</li>
+        <li>Learn basic self-defense moves.</li>
+        <li>Carry a whistle or personal alarm.</li>
+        <li>Move toward crowded places if threatened.</li>
+    </ul>
+
+</section>
+
+<!-- WOMEN EMPOWERMENT -->
+<section class="card">
+
+    <h2>👩 Women Empowerment</h2>
+
+    <p>
+        "Strong women don't wait for opportunities,
+        they create them."
+    </p>
+
+    <br>
+
+    <p>
+        Education, awareness, confidence and courage
+        are the strongest tools for safety.
+    </p>
+
+</section>
+
+<!-- GALLERY -->
+<section class="card">
+
+    <h2>📸 Empowerment Gallery</h2>
+
+    <div class="gallery">
+
+        <img
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400"
+        alt="Women">
+
+        <img
+        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400"
+        alt="Women">
+
+    </div>
+
+</section><!-- CONTACT US -->
+
+<section id="contact" class="card">
+
+    <h2>📞 Contact Us</h2>
+
+    <p>
+        Have questions or need assistance?
+        Reach out to SafeHer AI.
+    </p>
+
+    <br>
+
+    <div class="contact-box">
+
+        <p>📧 Email: safeherai@gmail.com</p>
+
+        <p>📱 Phone: +91 98765 43210</p>
+
+        <p>🌐 Website: www.safeherai.com</p>
+
+        <p>📍 Location: New Delhi, India</p>
+
+    </div>
+
+</section>
+
+<!-- EMERGENCY HELPLINES -->
+
+<section class="card emergency-section">
+
+    <h2>🚨 Emergency Helplines</h2>
+
+    <div class="helpline-grid">
+
+        <div class="helpline-card">
+            <h3>👮 Police</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚑 Ambulance</h3>
+            <p>108</p>
+            <a href="tel:108">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>👩 Women Helpline</h3>
+            <p>1091</p>
+            <a href="tel:1091">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🧒 Child Helpline</h3>
+            <p>1098</p>
+            <a href="tel:1098">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🔥 Fire Brigade</h3>
+            <p>101</p>
+            <a href="tel:101">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>🚨 National Emergency</h3>
+            <p>112</p>
+            <a href="tel:112">
+                <button>Call Now</button>
+            </a>
+        </div>
+
+    </div><div class="emergency-warning">
+
+    ⚠ In case of immediate danger, press the SOS button
+    and contact emergency services immediately.
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    SafeHer AI © 2026-2027 | Class 12 Capstone Project
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
