@@ -310,3 +310,113 @@ window.addEventListener("load", function () {
         );
     }
 });
+
+let emergencyContact = {
+  name: "",
+  phone: ""
+};
+
+// Save the trusted contact on this device
+document.getElementById("saveContactBtn")
+  .addEventListener("click", function () {
+    const name = document.getElementById("contactName")
+      .value.trim();
+
+    const phone = document.getElementById("contactPhone")
+      .value.trim();
+
+    if (!name || !/^\+?[0-9\s()-]{7,20}$/.test(phone)) {
+      alert("Please enter a name and a valid phone number.");
+      return;
+    }
+
+    emergencyContact = { name, phone };
+
+    document.getElementById("sosStatus").textContent =
+      "Emergency contact saved for this page session.";
+
+    alert("Contact saved. Test SOS without sending an actual alert.");
+  });
+
+// Beep using the browser audio API
+function playSOSBeep() {
+  try {
+    const audio = new (window.AudioContext ||
+      window.webkitAudioContext)();
+
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = 880;
+    gain.gain.value = 0.15;
+
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+
+    oscillator.start();
+
+    setTimeout(() => {
+      oscillator.stop();
+      audio.close();
+    }, 700);
+  } catch (error) {
+    console.log("Beep sound unavailable:", error);
+  }
+}
+
+// Prepare a location message for the trusted contact
+document.getElementById("sosBtn")
+  .addEventListener("click", async function () {
+    playSOSBeep();
+
+    const status = document.getElementById("sosStatus");
+
+    if (!emergencyContact.phone) {
+      status.textContent =
+        "Please save an emergency contact first.";
+      return;
+    }
+
+    const confirmed = confirm(
+      "Prepare an emergency message for " +
+      emergencyContact.name + "?"
+    );
+
+    if (!confirmed) return;
+
+    status.textContent = "Getting your location...";
+
+    if (!navigator.geolocation) {
+      status.textContent =
+        "Location unavailable. You can still call 112.";
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const mapLink =
+          `https://maps.google.com/?q=${lat},${lon}`;
+
+        const message =
+          `I may need help. My current location: ${mapLink}`;
+
+        const smsLink =
+          `sms:${emergencyContact.phone}` +
+          `?body=${encodeURIComponent(message)}`;
+
+        status.textContent =
+          "Location ready. Your SMS app may open so you can review and send the message.";
+
+        window.location.href = smsLink;
+      },
+      function () {
+        status.textContent =
+          "Location permission denied or unavailable. You can still call 112.";
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
