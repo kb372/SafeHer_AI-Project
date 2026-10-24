@@ -18,83 +18,68 @@ function welcomeUser() {
 
 }
 
-/* PLACE SAFETY ANALYZER */
+/* PLACE SAFETY ANALYZER — CONNECTED TO MODEL API */
 
-function analyzeImage() {
-
-    const imageInput =
-        document.getElementById("imageUpload");
+async function analyzeImage() {
+    const imageInput = document.getElementById("imageUpload");
+    const report = document.getElementById("report");
+    const progressBar = document.getElementById("progressBar");
+    const scoreDisplay = document.getElementById("scoreDisplay");
 
     if (!imageInput.files.length) {
-
         alert("Please upload an image first.");
-
         return;
     }
 
-    let lighting =
-        Math.floor(Math.random() * 31);
+    const image = imageInput.files[0];
 
-    let crowd =
-        Math.floor(Math.random() * 26);
+    report.innerHTML = "<p>🔍 Analyzing image with SafeHer AI...</p>";
 
-    let visibility =
-        Math.floor(Math.random() * 21);
+    try {
+        const formData = new FormData();
+        formData.append("image", image);
 
-    let cctv =
-        Math.floor(Math.random() * 16);
+        const response = await fetch(
+            "http://127.0.0.1:5001/predict",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
 
-    let emergency =
-        Math.floor(Math.random() * 11);
+        const result = await response.json();
 
-    let score =
-        lighting +
-        crowd +
-        visibility +
-        cctv +
-        emergency;
+        if (!response.ok) {
+            throw new Error(result.error || "Prediction failed.");
+        }
 
-    let status = "";
+        const unsafeScore = Number(result.unsafe_score);
+        const safeScore = 100 - unsafeScore;
+        const isUnsafe = result.prediction === "unsafe";
 
-    if (score >= 80) {
+        progressBar.style.width = safeScore + "%";
+        scoreDisplay.textContent = safeScore.toFixed(2) + "%";
 
-        status = "🟢 SAFE AREA";
+        report.innerHTML = `
+            <h3>📊 SafeHer AI Image Analysis</h3>
+            <p>🖼️ Image: ${image.name.replace(/[&<>"']/g, "")}</p>
+            <p>🟢 Model safe score: ${safeScore.toFixed(2)}%</p>
+            <p>🔴 Model unsafe score: ${unsafeScore.toFixed(2)}%</p>
+            <h2>${isUnsafe ? "🔴 MODEL FLAGS THIS IMAGE" : "🟢 MODEL CLASSIFIES THIS IMAGE AS SAFE"}</h2>
+            <p><strong>Important:</strong> This is an experimental AI classification,
+            not a verified measure of real-world safety. Please assess the surroundings
+            yourself and seek help if you feel unsafe.</p>
+        `;
 
-    } else if (score >= 50) {
-
-        status = "🟡 MODERATE RISK";
-
-    } else {
-
-        status = "🔴 UNSAFE AREA";
+    } catch (error) {
+        report.innerHTML = `
+            <h3>⚠️ Unable to analyze image</h3>
+            <p>${error.message}</p>
+            <p>Check that model_api.py is running on this computer.</p>
+        `;
     }
-
-    document.getElementById("progressBar").style.width =
-        score + "%";
-
-    document.getElementById("scoreDisplay").innerHTML =
-        score + "%";
-
-    document.getElementById("report").innerHTML =
-
-        "<h3>📊 SafeHer AI Report</h3>" +
-
-        "<p>💡 Lighting : " + lighting + "/30</p>" +
-
-        "<p>👥 Crowd Density : " + crowd + "/25</p>" +
-
-        "<p>🛣 Visibility : " + visibility + "/20</p>" +
-
-        "<p>📹 CCTV Presence : " + cctv + "/15</p>" +
-
-        "<p>🚔 Emergency Access : " + emergency + "/10</p>" +
-
-        "<br>" +
-
-        "<h2>Safety Score : " + score + "/100</h2>" +
-
-        "<h2>" + status + "</h2>";
 }
+
 
 /* EMOTION PREDICTOR */
 
