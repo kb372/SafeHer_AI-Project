@@ -267,21 +267,26 @@ function sendSOS() {
     );
 }
 
-/* ENTER KEY SUPPORT */
+
 window.addEventListener("load", function () {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        console.log("Location access granted.");
-        console.log("Latitude:", position.coords.latitude);
-        console.log("Longitude:", position.coords.longitude);
-      },
-      function (error) {
-        console.log(
-          "Location permission or access error:",
-          error.message
-        );
-      }
-    );
+  if (!navigator.geolocation) {
+    console.log("Geolocation is not supported.");
+    return;
   }
+
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      console.log("Location permission granted.");
+      console.log("Latitude:", position.coords.latitude);
+      console.log("Longitude:", position.coords.longitude);
+    },
+    function (error) {
+      console.log("Location error:", error.message);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0
+    }
+  );
 });
