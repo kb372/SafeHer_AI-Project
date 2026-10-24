@@ -268,4 +268,20 @@ function sendSOS() {
 }
 
 /* ENTER KEY SUPPORT */
-
+window.addEventListener("load", function () {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        console.log("Location access granted.");
+        console.log("Latitude:", position.coords.latitude);
+        console.log("Longitude:", position.coords.longitude);
+      },
+      function (error) {
+        console.log(
+          "Location permission or access error:",
+          error.message
+        );
+      }
+    );
+  }
+});
