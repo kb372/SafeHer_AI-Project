@@ -95,6 +95,7 @@ function analyzeImage() {
 
         "<h2>" + status + "</h2>";
 }
+
 /* EMOTION PREDICTOR */
 
 function detectEmotion() {
@@ -266,26 +267,31 @@ function sendSOS() {
     );
 }
 
+/* ENTER KEY SUPPORT */
 
-window.addEventListener("load", function () {
-  if (!navigator.geolocation) {
-    console.log("Geolocation is not supported.");
-    return;
-  }
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      console.log("Location permission granted.");
-      console.log("Latitude:", position.coords.latitude);
-      console.log("Longitude:", position.coords.longitude);
-    },
-    function (error) {
-      console.log("Location error:", error.message);
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 15000,
-      maximumAge: 0
+        const input =
+            document.getElementById("userInput");
+
+        if (input) {
+
+            input.addEventListener(
+                "keypress",
+                function (event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        sendMessage();
+                    }
+
+                }
+            );
+        }
+
     }
-  );
-});
+);
