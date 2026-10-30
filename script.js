@@ -296,17 +296,12 @@ document.addEventListener(
     }
 );
 navigator.geolocation.getCurrentPosition(
-    function(position) {
-        console.log("✅ Location permission granted!");
+    (position) => {
+        console.log("Location allowed!");
         console.log("Latitude:", position.coords.latitude);
         console.log("Longitude:", position.coords.longitude);
     },
-    function(error) {
-        console.error("❌ Location error:", error.message);
-    },
-    {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 0
+    (error) => {
+        console.log("Location permission:", error.message);
     }
 );
